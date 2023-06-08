@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "58615565553",
+    "project_id": "mastograpp-e9ac2",
+    "storage_bucket": "mastograpp-e9ac2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:58615565553:android:c4241459d59ca3ea356d50",
+        "android_client_info": {
+          "package_name": "com.mycompany.todoblogstarter1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "58615565553-d0lcq3cik2qo9khde13d7lnjebbv0ptg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxDo90XVaZlk280URNoGseqdNWxOsAvLw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "58615565553-d0lcq3cik2qo9khde13d7lnjebbv0ptg.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "58615565553-gubnmcaudt6d3vs34ft8mlcau159sghs.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mycompany.todoblogstarter1"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
