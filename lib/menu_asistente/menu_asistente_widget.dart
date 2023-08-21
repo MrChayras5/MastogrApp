@@ -1,3 +1,5 @@
+import 'package:actividad_integradora/generar_reportes_aaasistnt/generar_reportes_aaasistnt_widget.dart';
+
 import '/auth/firebase_auth/auth_util.dart';
 import '/bienvenida/bienvenida_widget.dart';
 import '/editar_citas/editar_citas_widget.dart';
@@ -189,7 +191,7 @@ class _MenuAsistenteWidgetState extends State<MenuAsistenteWidget> {
                       ),
                       ListTile(
                         leading: FaIcon(
-                          FontAwesomeIcons.filePdf,
+                          FontAwesomeIcons.fileSignature,
                           size: 30.0,
                         ),
                         title: Text(
@@ -345,7 +347,7 @@ class _MenuAsistenteWidgetState extends State<MenuAsistenteWidget> {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) =>
-                                        GenerarReportesWidget(),
+                                        GenerarReportesAaasistntWidget(),
                                   ),
                                 );
                               },

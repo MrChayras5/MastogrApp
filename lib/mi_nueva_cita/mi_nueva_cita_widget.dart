@@ -711,6 +711,7 @@ class _MiNuevaCitaWidgetState extends State<MiNuevaCitaWidget> {
                                   idAutorizar: false,
                                   isAsistent: false,
                                   idEdit: false,
+                                  idPeticion: false,
                                   hora: _model.datePicked2,
                                 );
                                 await NuevaCitaRecord.collection

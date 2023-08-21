@@ -1,3 +1,7 @@
+import 'package:actividad_integradora/generar_reportes/generar_reportes_widget.dart';
+import 'package:actividad_integradora/generar_reportespacient/generar_reportespacient_widget.dart';
+
+import '../editar_citas_pacient/editar_citas_pacient_widget.dart';
 import '/auth/firebase_auth/auth_util.dart';
 import '/bienvenida/bienvenida_widget.dart';
 import '/calendario/calendario_widget.dart';
@@ -144,7 +148,7 @@ class _MenuPacienteWidgetState extends State<MenuPacienteWidget> {
                     ),
                     title: Text(
                       FFLocalizations.of(context).getText(
-                        'noupaocw' /* Reportes citas */,
+                        'noupaocw' /* Editar citas */,
                       ),
                       style:
                           FlutterFlowTheme.of(context).headlineSmall.override(
@@ -154,7 +158,7 @@ class _MenuPacienteWidgetState extends State<MenuPacienteWidget> {
                     ),
                     subtitle: Text(
                       FFLocalizations.of(context).getText(
-                        'yhkukf1h' /* Visualizar reportes */,
+                        'yhkukf1h' /* Visualizar citas */,
                       ),
                       style: FlutterFlowTheme.of(context).titleSmall,
                     ),
@@ -485,12 +489,18 @@ class _MenuPacienteWidgetState extends State<MenuPacienteWidget> {
                             buttonSize: 105.0,
                             fillColor: Color(0xFFEC7484),
                             icon: FaIcon(
-                              FontAwesomeIcons.filePdf,
+                              FontAwesomeIcons.fileSignature,
                               color: Colors.white,
-                              size: 60.0,
+                              size: 55.0,
                             ),
-                            onPressed: () {
-                              print('Reportes pressed ...');
+                            //boton de reportes
+                            onPressed: () async {
+                              await Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => EditarCitasPacientWidget(),
+                                ),
+                              );
                             },
                           ),
                         ),
@@ -500,8 +510,9 @@ class _MenuPacienteWidgetState extends State<MenuPacienteWidget> {
                           alignment: AlignmentDirectional(0.57, -1.95),
                           child: Text(
                             FFLocalizations.of(context).getText(
-                              '3p6w7c0a' /* Reportes */,
+                              '3p6w7c0a' /* Editar Citas */,
                             ),
+
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
@@ -509,6 +520,7 @@ class _MenuPacienteWidgetState extends State<MenuPacienteWidget> {
                                   color: FlutterFlowTheme.of(context).darkBG,
                                   fontSize: 19.0,
                                 ),
+
                           ),
                         ),
                       ),

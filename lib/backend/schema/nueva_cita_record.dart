@@ -44,10 +44,34 @@ class NuevaCitaRecord extends FirestoreRecord {
   String get lugar => _lugar ?? '';
   bool hasLugar() => _lugar != null;
 
+  //segundo lugar
+  String? _segundLugar;
+  String get segundLugar => _segundLugar ?? '';
+  bool hasSegundLugar() => _segundLugar != null;
+
+  //segundo estudio
+  String? _segundEstudi;
+  String get segundEstudi => _segundEstudi ?? '';
+  bool hasSegundEstudi() => _segundEstudi != null;
+
+
+
+  //segundo estado
+  String? _segundEstado;
+  String get segundEstado => _segundEstado ?? '';
+  bool hasSegundEstado() => _segundEstado != null;
+
+
   // "fecha" field.
   DateTime? _fecha;
   DateTime? get fecha => _fecha;
   bool hasFecha() => _fecha != null;
+
+  //segundFecha
+  DateTime? _segundFecha;
+  DateTime? get segundFecha => _segundFecha;
+  bool hasSegundFecha() => _segundFecha != null;
+
 
   // "userID" field.
   DocumentReference? _userID;
@@ -74,10 +98,20 @@ class NuevaCitaRecord extends FirestoreRecord {
   bool get idEdit => _idEdit ?? false;
   bool hasIdEdit() => _idEdit != null;
 
+  //idPeticion
+  bool? _idPeticion;
+  bool get idPeticion => _idPeticion ?? false;
+  bool hasIdPeticion() => _idPeticion != null;
+
   // "hora" field.
   DateTime? _hora;
   DateTime? get hora => _hora;
   bool hasHora() => _hora != null;
+
+  // segunda hora
+  DateTime? _segundHora;
+  DateTime? get segundHora => _segundHora;
+  bool hasSegundHora() => _segundHora != null;
 
   void _initializeFields() {
     _nombre = snapshotData['nombre'] as String?;
@@ -87,12 +121,25 @@ class NuevaCitaRecord extends FirestoreRecord {
     _estado = snapshotData['estado'] as String?;
     _lugar = snapshotData['lugar'] as String?;
     _fecha = snapshotData['fecha'] as DateTime?;
+    //Segunda fecha
+    _segundFecha = snapshotData['segundFecha'] as DateTime?;
+    //
     _userID = snapshotData['userID'] as DocumentReference?;
     _motivoCambio = snapshotData['motivoCambio'] as String?;
     _isAsistent = snapshotData['isAsistent'] as bool?;
     _idAutorizar = snapshotData['idAutorizar'] as bool?;
     _idEdit = snapshotData['idEdit'] as bool?;
+    _idPeticion = snapshotData['idPeticion'] as bool?;
     _hora = snapshotData['hora'] as DateTime?;
+    //segunHora
+    _segundHora = snapshotData['segundHora'] as DateTime?;
+    //segundo lugar
+    _segundLugar = snapshotData['segundLugar'] as String?;
+    //segundo estado
+    _segundEstado = snapshotData['segundEstado'] as String?;
+    //segundo estudio
+    _segundEstudi = snapshotData['segundEstudi'] as String?;
+
   }
 
   static CollectionReference get collection =>
@@ -129,12 +176,24 @@ Map<String, dynamic> createNuevaCitaRecordData({
   String? estado,
   String? lugar,
   DateTime? fecha,
+  DateTime? hora,
   DocumentReference? userID,
   String? motivoCambio,
   bool? isAsistent,
   bool? idAutorizar,
   bool? idEdit,
-  DateTime? hora,
+  bool? idPeticion,
+  //Datos al editar la cita
+  String? segundEstado,
+  String? segundLugar,
+  String? segundEstudi,
+  DateTime? segundFecha,
+  DateTime? segundHora,
+
+
+
+
+
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -150,7 +209,10 @@ Map<String, dynamic> createNuevaCitaRecordData({
       'isAsistent': isAsistent,
       'idAutorizar': idAutorizar,
       'idEdit': idEdit,
+      'idPeticion': idPeticion,
       'hora': hora,
+
+      'segundLugar': segundLugar,
     }.withoutNulls,
   );
 

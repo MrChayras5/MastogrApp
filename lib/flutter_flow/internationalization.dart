@@ -210,7 +210,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '',
     },
     'hulhqtw9': {
-      'es': 'Reportes',
+      'es': 'Editar Citas',
       'en': '',
     },
     'tc6bbidk': {
@@ -226,7 +226,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '',
     },
     'b1rtg22x': {
-      'es': 'Reportes',
+      'es': 'Peticiones',
       'en': '',
     },
     'ocvnnjcq': {
@@ -386,7 +386,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '',
     },
     '3p6w7c0a': {
-      'es': 'Reportes',
+      'es': 'Editar Citas',
       'en': '',
     },
     'wnm2qifx': {
@@ -398,11 +398,44 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '',
     },
     'noupaocw': {
-      'es': 'Reportes citas',
+      'es': 'Editar Citas',
       'en': '',
     },
     'yhkukf1h': {
-      'es': 'Visualizar reportes',
+      'es': 'Visualizar citas',
+      'en': '',
+    },
+    //Editar Citas
+    'wl01xeul': {
+      'es': 'Nombre: ',
+      'en': '',
+    },
+    'o2sv6dph': {
+      'es': 'Telefono: ',
+      'en': '',
+    },
+    'qikf3bjm': {
+      'es': 'Curp: ',
+      'en': '',
+    },
+    '6vre3sgm': {
+      'es': 'Estudio: ',
+      'en': '',
+    },
+    'm2uzzkxl': {
+      'es': 'Estado: ',
+      'en': '',
+    },
+    'qks6cw6h': {
+      'es': 'Lugar: ',
+      'en': '',
+    },
+    'm5glgnp2': {
+      'es': 'Fecha: ',
+      'en': '',
+    },
+    'zwuo4nf2': {
+      'es': 'Hora: ',
       'en': '',
     },
     'dhy0qnh3': {
@@ -453,7 +486,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '',
     },
     '5zq38hb9': {
-      'es': 'Reportes',
+      'es': 'Editar Citas',
       'en': '',
     },
     'mex49rbm': {
@@ -675,6 +708,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': 'Home',
       'en': '',
     },
+    'ok4cjw9f':{
+      'es':'Editar',
+      'en': '',
+    },
   },
   // MiNuevaCita
   {
@@ -791,6 +828,98 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '',
     },
   },
+  //EditarDatCitas
+  {
+    'dcr9gl3y': {
+      'es': 'Editar cita',
+      'en': '',
+    },
+    'dfau6xyj': {
+      'es': 'Estudio...',
+      'en': '',
+    },
+    'w6i69sr4': {
+      'es': 'Estado...',
+      'en': '',
+    },
+    'ytb7mj0t': {
+      'es': 'Lugar...',
+      'en': '',
+    },
+    'rat5kes5': {
+      'es': 'Fecha',
+      'en': '',
+    },
+    '3hd17ml1': {
+      'es': 'Hora',
+      'en': '',
+    },
+    'xeq7lctr': {
+      'es': 'Motivo de cambio',
+      'en': '',
+    },
+    '6ny5mmfr': {
+      'es': 'Motivo de cambio...',
+      'en': '',
+    },
+    'sgdj38r9': {
+      'es': 'Actualiza los siguiente datos:',
+      'en': '',
+    },
+    'rwod3s3s': {
+      'es': 'Actualiza',
+      'en': '',
+    },
+  },
+
+  //GenerarReportesAsistent
+  {
+    't14ns8mj': {
+      'es': 'Nombre: ',
+      'en': '',
+    },
+    'r0q6fos7': {
+      'es': 'Estudio: ',
+      'en': '',
+    },
+    '7kzxo6zc': {
+      'es': 'Estudio Cambio:',
+      'en': '',
+    },
+    'ikdwlill': {
+      'es': 'Estado: ',
+      'en': '',
+    },
+    '7kzxo6zcc': {
+      'es': 'Estado Cambio:',
+      'en': '',
+    },
+    'tm5x7iut': {
+      'es': 'Lugar:',
+      'en': '',
+    },
+    'tm5x7iutt': {
+      'es': 'Lugar Cambio:',
+      'en': '',
+    },
+    '76awkg77': {
+      'es': 'Fecha:',
+      'en': '',
+    },
+    '7kzxo6zcz': {
+      'es': 'Fecha Cambio:',
+      'en': '',
+    },
+    'mg0up9qx': {
+      'es': 'Hora:',
+      'en': '',
+    },
+    'mg0up9qxc': {
+      'es': 'Hora Cambio:',
+      'en': '',
+    },
+  },
+
   // Miscellaneous
   {
     'q8wlpeem': {
