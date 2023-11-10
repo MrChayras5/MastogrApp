@@ -56,8 +56,12 @@ class _EditarDatosCitasWidgetState extends State<EditarDatosCitasWidget> {
     return GestureDetector(
       onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
       child: Scaffold(
+        //evitar que el menu se eleve con el teclado
+        resizeToAvoidBottomInset: false, // Evita que el contenido se eleve con el teclado
+        //
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+
         appBar: AppBar(
           backgroundColor: Color(0xFFEC7484),
           automaticallyImplyLeading: true,
@@ -104,7 +108,7 @@ class _EditarDatosCitasWidgetState extends State<EditarDatosCitasWidget> {
                         children: [
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 20.0, 0.0, 10.0),
+                                0.0, 15.0, 0.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
@@ -112,7 +116,7 @@ class _EditarDatosCitasWidgetState extends State<EditarDatosCitasWidget> {
                                   alignment: AlignmentDirectional(-0.77, -0.93),
                                   child: Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        20.0, 0.0, 10.0, 0.0),
+                                        40.0, 0.0, 10.0, 0.0),
                                     child: Text(
                                       FFLocalizations.of(context).getText(
                                         'ndllm6x2' /* Actualiza los siguiente datos: */,
@@ -123,7 +127,7 @@ class _EditarDatosCitasWidgetState extends State<EditarDatosCitasWidget> {
                                         fontFamily: 'Poppins',
                                         color: FlutterFlowTheme.of(context)
                                             .secondaryText,
-                                        fontSize: 20.0,
+                                        fontSize: 17.5,
                                       ),
                                     ),
                                   ),
@@ -142,7 +146,57 @@ class _EditarDatosCitasWidgetState extends State<EditarDatosCitasWidget> {
                           ),
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
-                                20.0, 30.0, 0.0, 0.0),
+                                15.0, 0.0, 0.0, 0.0),
+                            child: Text(
+                              FFLocalizations.of(context).getText(
+                                'fh6w4xlg' /* Motivo de cambio: */,
+                              ),
+                              style: FlutterFlowTheme.of(context).titleMedium,
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(50, 10, 10, 25),
+                            child: SingleChildScrollView( // Agregamos un SingleChildScrollView aquí
+                              scrollDirection: Axis.vertical,
+                              child: Container(
+                                width: 275,
+                                height: 120,//120
+                                decoration: BoxDecoration(),
+                                child: TextFormField(
+                                  controller: _model.textController,
+                                  autofocus: false,
+                                  obscureText: false,
+                                  maxLines: null,
+                                  keyboardType: TextInputType.multiline,
+                                  decoration: InputDecoration(
+                                    labelText: FFLocalizations.of(context).getText(
+                                      'xeq7lctr' /* Motivo de cambio... */,
+                                    ),
+                                    labelStyle: FlutterFlowTheme.of(context).labelMedium,
+                                    hintStyle: FlutterFlowTheme.of(context).labelMedium,
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: FlutterFlowTheme.of(context).primary,
+                                        width: 2,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    // Resto de las propiedades de decoración...
+                                  ),
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontFamily: 'Lexend Deca',
+                                    fontSize: 16,
+                                  ),
+
+                                  validator: _model.textControllerValidator.asValidator(context),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                40.0, 20.0, 0.0, 0.0),
                             child: StreamBuilder<List<LugarCitaRecord>>(
                               stream: queryLugarCitaRecord(),
                               builder: (context, snapshot) {
@@ -150,8 +204,8 @@ class _EditarDatosCitasWidgetState extends State<EditarDatosCitasWidget> {
                                 if (!snapshot.hasData) {
                                   return Center(
                                     child: SizedBox(
-                                      width: 50.0,
-                                      height: 50.0,
+                                      width: 70.0,
+                                      height: 70.0,
                                       child: CircularProgressIndicator(
                                         color: FlutterFlowTheme.of(context)
                                             .primary,
@@ -171,8 +225,8 @@ class _EditarDatosCitasWidgetState extends State<EditarDatosCitasWidget> {
                                       .toList(),
                                   onChanged: (val) => setState(
                                           () => _model.lugarDropDownValue = val),
-                                  width: 171.0,
-                                  height: 50.0,
+                                  width: 191.0,//171
+                                  height: 65.0,//50
                                   searchHintTextStyle:
                                   FlutterFlowTheme.of(context).titleSmall,
                                   textStyle:
@@ -200,7 +254,7 @@ class _EditarDatosCitasWidgetState extends State<EditarDatosCitasWidget> {
                           ),
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 30.0, 0.0, 0.0),
+                                40.0, 80.0, 0.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -265,15 +319,36 @@ class _EditarDatosCitasWidgetState extends State<EditarDatosCitasWidget> {
                                             getCurrentTimestamp),
                                       );
                                       if (_datePicked2Time != null) {
-                                        setState(() {
-                                          _model.datePicked2 = DateTime(
-                                            getCurrentTimestamp.year,
-                                            getCurrentTimestamp.month,
-                                            getCurrentTimestamp.day,
-                                            _datePicked2Time.hour,
-                                            _datePicked2Time.minute,
+                                        if (_datePicked2Time.hour >= 7 && _datePicked2Time.hour <= 18) {
+                                          setState(() {
+                                            _model.datePicked2 = DateTime(
+                                              getCurrentTimestamp.year,
+                                              getCurrentTimestamp.month,
+                                              getCurrentTimestamp.day,
+                                              _datePicked2Time.hour,
+                                              _datePicked2Time.minute,
+                                            );
+                                          });
+                                        } else {
+                                          // Mostrar un mensaje de error al usuario si la hora está fuera del rango.
+                                          showDialog(
+                                            context: context,
+                                            builder: (context) {
+                                              return AlertDialog(
+                                                title: Text('Error'),
+                                                content: Text('Por favor, seleccione una hora entre las 9 am y las 6 pm.'),
+                                                actions: <Widget>[
+                                                  TextButton(
+                                                    onPressed: () {
+                                                      Navigator.of(context).pop();
+                                                    },
+                                                    child: Text('Cerrar'),
+                                                  ),
+                                                ],
+                                              );
+                                            },
                                           );
-                                        });
+                                        }
                                       }
                                     },
                                     text: FFLocalizations.of(context).getText(
@@ -309,78 +384,10 @@ class _EditarDatosCitasWidgetState extends State<EditarDatosCitasWidget> {
                               ],
                             ),
                           ),
+
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
-                                15.0, 30.0, 0.0, 0.0),
-                            child: Text(
-                              FFLocalizations.of(context).getText(
-                                'fh6w4xlg' /* Motivo de cambio: */,
-                              ),
-                              style: FlutterFlowTheme.of(context).titleMedium,
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                25.0, 0.0, 0.0, 0.0),
-                            child: Container(
-                              width: 275.0,
-                              decoration: BoxDecoration(),
-                              child: TextFormField(
-                                controller: _model.textController,
-                                autofocus: true,
-                                obscureText: false,
-                                decoration: InputDecoration(
-                                  labelText:
-                                  FFLocalizations.of(context).getText(
-                                    'bydb1cdd' /* Motivo de cambio... */,
-                                  ),
-                                  labelStyle:
-                                  FlutterFlowTheme.of(context).labelMedium,
-                                  hintStyle:
-                                  FlutterFlowTheme.of(context).labelMedium,
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color:
-                                      FlutterFlowTheme.of(context).primary,
-                                      width: 2.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(8.0),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                      width: 2.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(8.0),
-                                  ),
-                                  errorBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context).error,
-                                      width: 2.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(8.0),
-                                  ),
-                                  focusedErrorBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context).error,
-                                      width: 2.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(8.0),
-                                  ),
-                                  contentPadding:
-                                  EdgeInsetsDirectional.fromSTEB(
-                                      10.0, 0.0, 0.0, 180.0),
-                                ),
-                                style: FlutterFlowTheme.of(context).titleSmall,
-                                validator: _model.textControllerValidator
-                                    .asValidator(context),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                35.0, 35.0, 0.0, 0.0),
+                                40.0, 50.0, 0.0, 0.0),
                             child: FFButtonWidget(
                               onPressed: () async {
                                 var confirmDialogResponse = await showDialog<
@@ -395,16 +402,17 @@ class _EditarDatosCitasWidgetState extends State<EditarDatosCitasWidget> {
                                         _model.datePicked1,
                                         locale: FFLocalizations.of(context)
                                             .languageCode,
-                                      )} Hora:${dateTimeFormat(
+                                      )} \nHora:${dateTimeFormat(
                                         'jm',
                                         _model.datePicked2,
                                         locale: FFLocalizations.of(context)
                                             .languageCode,
-                                      )}'}${'Lugar: ${_model.lugarDropDownValue}'}${'Motivo del cambio: ${_model.textController.text}'}'),
+                                      )}'}${'Lugar: ${_model.lugarDropDownValue}\n'}${'Motivo del cambio: ${_model.textController.text}'}'),
                                       actions: [
                                         TextButton(
-                                          onPressed: () => Navigator.pop(
-                                              alertDialogContext, false),
+                                          onPressed: () {
+                                            Navigator.pop(alertDialogContext, false);
+                                          },
                                           child: Text('Cancelar'),
                                         ),
                                         TextButton(
@@ -417,20 +425,12 @@ class _EditarDatosCitasWidgetState extends State<EditarDatosCitasWidget> {
                                   },
                                 ) ??
                                     false;
-
-                                final nuevaCitaUpdateData =
-                                createNuevaCitaRecordData(
-                                  motivoCambio: _model.textController.text,
-                                  fecha: _model.datePicked1,
-                                  lugar: valueOrDefault<String>(
-                                    _model.lugarDropDownValue,
-                                    'AquivaElLugar',
-                                  ),
-                                  idEdit: true,
-                                  hora: _model.datePicked2,
-                                );
-                                await widget.idc!.update(nuevaCitaUpdateData);
-                                await Navigator.push(
+                                if (confirmDialogResponse) {
+                                  await widget.idc!.update(createNuevaCitaRecordData());
+                                } else {
+                                  return;
+                                }
+                                Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => EditarCitasWidget(),
@@ -441,27 +441,25 @@ class _EditarDatosCitasWidgetState extends State<EditarDatosCitasWidget> {
                                 'da37immm' /* Actualizar */,
                               ),
                               options: FFButtonOptions(
-                                height: 40.0,
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    24.0, 0.0, 24.0, 0.0),
-                                iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 0.0),
+                                height: 40,
+                                padding: EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
+                                iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                                 color: FlutterFlowTheme.of(context).primary,
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .titleSmall
-                                    .override(
+                                textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                                   fontFamily: 'Lexend Deca',
                                   color: Colors.white,
                                 ),
-                                elevation: 3.0,
+                                elevation: 3,
                                 borderSide: BorderSide(
                                   color: Colors.transparent,
-                                  width: 1.0,
+                                  width: 1,
                                 ),
-                                borderRadius: BorderRadius.circular(8.0),
+                                borderRadius: BorderRadius.circular(8),
                               ),
                             ),
                           ),
+
+
                         ],
                       ),
                     ],
@@ -544,14 +542,8 @@ class _EditarDatosCitasWidgetState extends State<EditarDatosCitasWidget> {
                             color: FlutterFlowTheme.of(context).primaryText,
                             size: 25.0,
                           ),
-                          onPressed: () async {
-                            await Navigator.pushAndRemoveUntil(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => EditarCitasWidget(),
-                              ),
-                                  (r) => false,
-                            );
+                          onPressed: () {
+                            print('IconButton pressed ...');
                           },
                         ),
                       ),

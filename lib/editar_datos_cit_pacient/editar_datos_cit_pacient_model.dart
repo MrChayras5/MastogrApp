@@ -15,10 +15,25 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class EditarDatosCitPacintModel extends FlutterFlowModel {
+class EditarDatosCitPacientModel extends FlutterFlowModel {
   ///  State fields for stateful widgets in this page.
-
+  final formKey = GlobalKey<FormState>();
   final unfocusNode = FocusNode();
+
+  // State field(s) for TextField widget.
+  FocusNode? textFieldFocusNode;
+  TextEditingController? textController;
+  String? Function(BuildContext, String?)? textControllerValidator;
+  String? _textControllerValidator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return FFLocalizations.of(context).getText(
+        'juhwvh7g' /* Ingresa el motivo de cambio */,
+      );
+    }
+
+    return null;
+  }
+
   // State field(s) for EstudioDropDown widget.
   String? estudioDropDownValue;
   FormFieldController<String>? estudioDropDownValueController;
@@ -30,16 +45,16 @@ class EditarDatosCitPacintModel extends FlutterFlowModel {
   FormFieldController<String>? lugarDropDownValueController;
   DateTime? datePicked1;
   DateTime? datePicked2;
-  // State field(s) for TextField widget.
-  TextEditingController? textController;
-  String? Function(BuildContext, String?)? textControllerValidator;
 
   /// Initialization and disposal methods.
 
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    textControllerValidator = _textControllerValidator;
+  }
 
   void dispose() {
     unfocusNode.dispose();
+    textFieldFocusNode?.dispose();
     textController?.dispose();
   }
 

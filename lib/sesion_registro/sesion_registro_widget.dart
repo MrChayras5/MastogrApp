@@ -41,6 +41,8 @@ class _SesionRegistroWidgetState extends State<SesionRegistroWidget> {
     return GestureDetector(
       onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
       child: Scaffold(
+        resizeToAvoidBottomInset: false, // Evitará que la pantalla se redimensione cuando el teclado se muestra
+
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBtnText,
         body: SafeArea(
@@ -49,7 +51,7 @@ class _SesionRegistroWidgetState extends State<SesionRegistroWidget> {
             children: [
               Container(
                 width: MediaQuery.of(context).size.width * 1.0,
-                height: MediaQuery.of(context).size.height * 0.765,
+                height: MediaQuery.of(context).size.height * 0.830,//0.865
                 decoration: BoxDecoration(
                   color: Color(0xFFECA090),
                   image: DecorationImage(
@@ -75,7 +77,7 @@ class _SesionRegistroWidgetState extends State<SesionRegistroWidget> {
                         alignment: AlignmentDirectional(0.08, 0.09),
                         child: Container(
                           width: 320.7,
-                          height: 576.4,
+                          height: 575.4,
                           decoration: BoxDecoration(
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
@@ -134,7 +136,7 @@ class _SesionRegistroWidgetState extends State<SesionRegistroWidget> {
                                   ),
                                 ),
                                 Align(
-                                  alignment: AlignmentDirectional(0.03, 0.57),
+                                  alignment: AlignmentDirectional(0.03, 0.65),
                                   child: FFButtonWidget(
                                     onPressed: () async {
                                       await Navigator.push(

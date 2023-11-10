@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+
 import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -47,6 +49,8 @@ class _IniciarSesionWidgetState extends State<IniciarSesionWidget> {
     return GestureDetector(
       onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
       child: Scaffold(
+        resizeToAvoidBottomInset: false, // Evitará que la pantalla se redimensione cuando el teclado se muestra
+
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBtnText,
         body: SafeArea(
@@ -268,6 +272,7 @@ class _IniciarSesionWidgetState extends State<IniciarSesionWidget> {
                                           ),
                                         ),
                                       ),
+
                                       style: FlutterFlowTheme.of(context)
                                           .titleSmall,
                                       validator: _model
@@ -280,6 +285,8 @@ class _IniciarSesionWidgetState extends State<IniciarSesionWidget> {
                                         0.0, 24.0, 0.0, 0.0),
                                     child: FFButtonWidget(
                                       onPressed: () async {
+                                        // Oculta el teclado
+                                        FocusScope.of(context).unfocus();
                                         if (_model.formKey.currentState ==
                                                 null ||
                                             !_model.formKey.currentState!
@@ -287,37 +294,86 @@ class _IniciarSesionWidgetState extends State<IniciarSesionWidget> {
                                           return;
                                         }
 
-                                        final user =
-                                            await authManager.signInWithEmail(
-                                          context,
-                                          _model.emailTextFieldController.text,
-                                          _model
-                                              .passwordTextFieldController.text,
-                                        );
-                                        if (user == null) {
-                                          return;
-                                        }
+                                        final FirebaseAuth _auth = FirebaseAuth.instance;
+                                        String email = _model.emailTextFieldController?.text ?? "";
+                                        String password = _model.passwordTextFieldController?.text ?? "";
+                                        try{
+                                          UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+                                            email: email,
+                                            password: password,
+                                          );
+                                          // Si llega a este punto, el inicio de sesión fue exitoso.
+                                          // Puedes acceder a la información del usuario con userCredential.user.
+                                          ////User? user = userCredential.user;
+                                          final user =
+                                          await authManager.signInWithEmail(
+                                            context,
+                                            _model.emailTextFieldController.text,
+                                            _model
+                                                .passwordTextFieldController.text,
+                                          );
+                                          if (user == null) {
+                                            return;
+                                          }
 
-                                        if (valueOrDefault<bool>(
-                                            currentUserDocument?.isAsistent,
-                                            false)) {
-                                          await Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  MenuAsistenteWidget(),
-                                            ),
-                                          );
-                                        } else {
-                                          await Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  MenuPacienteWidget(),
-                                            ),
-                                          );
-                                        }
-                                      },
+                                          if (valueOrDefault<bool>(
+                                              currentUserDocument?.isAsistent,
+                                              false)) {
+                                            await Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    MenuAsistenteWidget(),
+                                              ),
+                                            );
+                                          } else {
+                                            await Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    MenuPacienteWidget(),
+                                              ),
+                                            );
+                                          }
+
+    } catch (e) {
+    // Si hay un error, puedes manejarlo aquí, por ejemplo, mostrar un mensaje de error.
+   // print("Error al iniciar sesión: $e");
+    // Muestra un mensaje de error al usuario.
+    if (e is FirebaseAuthException && e.code == 'user-not-found') {
+      // El usuario no está registrado, muestra un mensaje de error personalizado.
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+              "El correo no está registrado. Regístrate antes de iniciar sesión."),
+          duration: Duration(seconds: 5),
+          backgroundColor: Color(0xFFEC7484),
+        ),
+      );
+    }else {
+      // Si hay un error, muestra un SnackBar con el mensaje de error.
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+              "Error al iniciar sesión: La contraseña es incorrecta."),
+          duration: Duration(seconds: 5),
+          // Opcional: Define la duración del SnackBar.
+          backgroundColor: Color(
+              0xFFEC7484), // Cambia el color de fondo a rojo (por ejemplo).
+        ),
+      );
+    }
+    }
+    },
+
+
+
+
+
+
+
+
+
                                       text: FFLocalizations.of(context).getText(
                                         'sk0kxe3r' /* INICIAR SESIÓN */,
                                       ),
@@ -355,11 +411,11 @@ class _IniciarSesionWidgetState extends State<IniciarSesionWidget> {
                         ),
                       ),
                       Align(
-                        alignment: AlignmentDirectional(0.05, 0.6),
+                        alignment: AlignmentDirectional(0.05, 0.8),
                         child: Image.asset(
                           'assets/images/mastografias_1.jpg',
                           width: 151.2,
-                          height: 175.1,
+                          height: 175.1,//175.1
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -412,29 +468,24 @@ class _IniciarSesionWidgetState extends State<IniciarSesionWidget> {
                     ),
                     FFButtonWidget(
                       onPressed: () async {
-                        await Navigator.push(
+                        await Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                             builder: (context) => RegistrateWidget(),
                           ),
                         );
                       },
-                      text: FFLocalizations.of(context).getText(
-                        '73alzzcb' /*  Registrate */,
-                      ),
+                      text: FFLocalizations.of(context).getText('73alzzcb' /* Registrate */),
                       options: FFButtonOptions(
                         width: 130.0,
                         height: 40.0,
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        iconPadding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         color: Color(0xFFECA090),
-                        textStyle:
-                            FlutterFlowTheme.of(context).titleSmall.override(
-                                  fontFamily: 'Lexend Deca',
-                                  color: Colors.white,
-                                ),
+                        textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                          fontFamily: 'Lexend Deca',
+                          color: Colors.white,
+                        ),
                         borderSide: BorderSide(
                           color: Colors.transparent,
                           width: 1.0,
@@ -442,6 +493,7 @@ class _IniciarSesionWidgetState extends State<IniciarSesionWidget> {
                         borderRadius: BorderRadius.circular(8.0),
                       ),
                     ),
+
                   ],
                 ),
               ),

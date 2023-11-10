@@ -111,6 +111,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': 'MastogrApp',
       'en': '',
     },
+    'lx7y2m144': {
+      'es': 'MastogrApp',
+      'en': '',
+    },
     'xze5q799': {
       'es': 'Home',
       'en': '',
@@ -163,9 +167,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '',
     },
     'go757j05': {
-      'es': 'Contraseña incorrecta.',
+      'es': 'Contraseña min. de 8 digitos.',
       'en': '',
     },
+   // go757j05
     'zpoi82pg': {
       'es': 'Contraseña incorrecta.',
       'en': '',
@@ -210,11 +215,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '',
     },
     'hulhqtw9': {
-      'es': 'Editar Citas',
+      'es': 'Peticiones',
       'en': '',
     },
     'tc6bbidk': {
-      'es': 'Visualizar reportes',
+      'es': 'Visualizar peticiones',
       'en': '',
     },
     'sd3vokhu': {
@@ -257,6 +262,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     '4z9pyvtv': {
       'es': 'Registrate:',
+      'en': '',
+    },
+    'nomm': {
+      'es': 'Nombre ivalido:',
       'en': '',
     },
     'sxsm03mo': {
@@ -315,8 +324,20 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': 'Ingresa un correo',
       'en': '',
     },
+    'ingname': {
+      'es': 'Ingrese su nombre',
+      'en': '',
+    },
+    'ingnamevalid': {
+      'es': 'Ingrese un nombre valido',
+      'en': '',
+    },
     '7du2kdkh': {
       'es': 'Correo invalido',
+      'en': '',
+    },
+    'correoregis': {
+      'es': 'El correo ya fue registrado, intenta con otro',
       'en': '',
     },
     'pg9ph2pa': {
@@ -324,9 +345,22 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '',
     },
     'mkf22nrd': {
-      'es': 'Field is required',
+      'es': 'Ingresar Contraseña',
       'en': '',
     },
+    'confirmkf22nrd': {
+      'es': 'Ingresar la confirmación de la contraseña',
+      'en': '',
+    },
+    'passwordMismatch': {
+      'es': 'Las contraseñas no coinciden',
+      'en': '',
+    },
+    'correoYaRegistrado': {
+      'es': 'Correo ya registrado',
+      'en': '',
+    },
+
     'leoqa9zd': {
       'es': 'Minimo de 8 caracteres',
       'en': '',
@@ -363,7 +397,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   // SolicitudCitas
   {
     '1ztsuu6s': {
-      'es': 'Solicitudes de citas',
+      'es': 'Solicitudes de citass',
       'en': '',
     },
     'g7bv24da': {
@@ -379,6 +413,14 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     'v5elkwgq': {
       'es': 'Mis citas',
+      'en': '',
+    },
+    'rbqkj6hkkkkk': {
+      'es': 'Petición:',
+      'en': '',
+    },
+    'rrr': {
+      'es': 'NumCita:',
       'en': '',
     },
     'is5s3tgg': {
@@ -681,12 +723,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': 'Hora',
       'en': '',
     },
-    'fh6w4xlg': {
-      'es': 'Motivo de cambio:',
+    'fh6w4xlgssss': {
+      'es': 'Motivo:',
       'en': '',
     },
     'bydb1cdd': {
-      'es': 'Motivo de cambio...',
+      'es': 'Motivo....',
       'en': '',
     },
     'da37immm': {
@@ -736,7 +778,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '',
     },
     'iz965mcf': {
-      'es': 'CURP o NSS (opcional)',
+      'es': 'CURP',
       'en': '',
     },
     'ymlfyxeo': {
@@ -862,12 +904,16 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': 'Motivo de cambio...',
       'en': '',
     },
+    'juhwvh7g': {
+      'es': 'Ingresa el motivo de cambio',
+      'en': '',
+    },
     'sgdj38r9': {
       'es': 'Actualiza los siguiente datos:',
       'en': '',
     },
     'rwod3s3s': {
-      'es': 'Actualiza',
+      'es': 'Actualizar',
       'en': '',
     },
   },
@@ -879,43 +925,63 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '',
     },
     'r0q6fos7': {
-      'es': 'Estudio: ',
+      'es': 'Estudio anterior: ',
       'en': '',
     },
     '7kzxo6zc': {
-      'es': 'Estudio Cambio:',
+      'es': 'Estudio nuevo:',
       'en': '',
     },
     'ikdwlill': {
-      'es': 'Estado: ',
+      'es': 'Estado anterior ',
       'en': '',
     },
     '7kzxo6zcc': {
-      'es': 'Estado Cambio:',
+      'es': 'Estado nuevo:',
       'en': '',
     },
     'tm5x7iut': {
-      'es': 'Lugar:',
+      'es': 'Lugar anterior:',
       'en': '',
     },
     'tm5x7iutt': {
-      'es': 'Lugar Cambio:',
+      'es': 'Lugar nuevo:',
       'en': '',
     },
     '76awkg77': {
-      'es': 'Fecha:',
+      'es': 'Fecha anterior:',
       'en': '',
     },
     '7kzxo6zcz': {
-      'es': 'Fecha Cambio:',
+      'es': 'Fecha nueva:',
       'en': '',
     },
     'mg0up9qx': {
-      'es': 'Hora:',
+      'es': 'Hora anterior:',
+      'en': '',
+    },
+    'mg0up9qxasasx': {
+      'es': 'Hora nueva:',
+      'en': '',
+    },
+    'zqvt7eik': {
+      'es': 'Denegar',
       'en': '',
     },
     'mg0up9qxc': {
-      'es': 'Hora Cambio:',
+      'es': 'Hora nueva:',
+      'en': '',
+    },
+    '5tvoxeqs': {
+      'es': 'Autorizar:',
+      'en': '',
+    },
+    '5tvoxeqsssss': {
+      'es': 'Autorizar:',
+      'en': '',
+    },
+    'ptdcitas': {
+      'es': 'Peticion de citas:',
       'en': '',
     },
   },

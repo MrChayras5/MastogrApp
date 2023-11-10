@@ -49,7 +49,7 @@ class _EditarCitasPacientWidgetState extends State<EditarCitasPacientWidget> {
       onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: Colors.white,
+        backgroundColor: FlutterFlowTheme.of(context).primaryBtnText,
         appBar: AppBar(
           backgroundColor: Color(0xFFEC7484),
           automaticallyImplyLeading: true,
@@ -86,7 +86,7 @@ class _EditarCitasPacientWidgetState extends State<EditarCitasPacientWidget> {
           child: Stack(
             children: [
               Container(
-                width: 398,
+                width: 378,//398
                 height: 689,
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -101,6 +101,17 @@ class _EditarCitasPacientWidgetState extends State<EditarCitasPacientWidget> {
                         isGreaterThanOrEqualTo: getCurrentTimestamp),
                   ),
                   builder: (context, snapshot) {
+                    if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                      return Center(
+                        child: Text(
+                          "Aún no tiene citas autorizadas.",
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.red,
+                          ),
+                        ),
+                      );
+                    }
                     // Customize what your widget looks like when it's loading.
                     if (!snapshot.hasData) {
                       return Center(
@@ -126,9 +137,9 @@ class _EditarCitasPacientWidgetState extends State<EditarCitasPacientWidget> {
                         listViewNuevaCitaRecordList[listViewIndex];
                         return Padding(
                           padding:
-                          EdgeInsetsDirectional.fromSTEB(20, 25, 20, 0),
+                          EdgeInsetsDirectional.fromSTEB(40, 25, 10, 0),
                           child: Container(
-                            width: 349,
+                            width: 349,//349
                             height: 305,
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.of(context).accent4,
@@ -146,7 +157,7 @@ class _EditarCitasPacientWidgetState extends State<EditarCitasPacientWidget> {
                                           Padding(
                                             padding:
                                             EdgeInsetsDirectional.fromSTEB(
-                                                40, 0, 0, 0),
+                                                40, 10, 0, 0),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
@@ -184,23 +195,7 @@ class _EditarCitasPacientWidgetState extends State<EditarCitasPacientWidget> {
                                                         .darkBG,
                                                   ),
                                                 ),
-                                                Text(
-                                                  FFLocalizations.of(context)
-                                                      .getText(
-                                                    'qikf3bjm' /* Curp : */,
-                                                  ),
-                                                  style: FlutterFlowTheme.of(
-                                                      context)
-                                                      .bodyMedium
-                                                      .override(
-                                                    fontFamily:
-                                                    'Lexend Deca',
-                                                    color:
-                                                    FlutterFlowTheme.of(
-                                                        context)
-                                                        .darkBG,
-                                                  ),
-                                                ),
+
                                                 Text(
                                                   FFLocalizations.of(context)
                                                       .getText(
@@ -286,13 +281,30 @@ class _EditarCitasPacientWidgetState extends State<EditarCitasPacientWidget> {
                                                         .darkBG,
                                                   ),
                                                 ),
+                                                Text(
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    'qikf3bjm' /* Curp : */,
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                      context)
+                                                      .bodyMedium
+                                                      .override(
+                                                    fontFamily:
+                                                    'Lexend Deca',
+                                                    color:
+                                                    FlutterFlowTheme.of(
+                                                        context)
+                                                        .darkBG,
+                                                  ),
+                                                ),
                                               ],
                                             ),
                                           ),
                                           Padding(
                                             padding:
                                             EdgeInsetsDirectional.fromSTEB(
-                                                20, 0, 0, 0),
+                                                0, 10, 0, 0),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
@@ -339,29 +351,7 @@ class _EditarCitasPacientWidgetState extends State<EditarCitasPacientWidget> {
                                                     ),
                                                   ),
                                                 ),
-                                                Flexible(
-                                                  child: Padding(
-                                                    padding:
-                                                    EdgeInsetsDirectional
-                                                        .fromSTEB(
-                                                        0, 0, 1, 0),
-                                                    child: Text(
-                                                      listViewNuevaCitaRecord
-                                                          .curpNss,
-                                                      style:
-                                                      FlutterFlowTheme.of(
-                                                          context)
-                                                          .bodyMedium
-                                                          .override(
-                                                        fontFamily:
-                                                        'Lexend Deca',
-                                                        color: FlutterFlowTheme.of(
-                                                            context)
-                                                            .darkBG,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
+
                                                 Flexible(
                                                   child: Padding(
                                                     padding:
@@ -478,6 +468,20 @@ class _EditarCitasPacientWidgetState extends State<EditarCitasPacientWidget> {
                                                         .darkBG,
                                                   ),
                                                 ),
+                                                Flexible(
+                                                  child: Padding(
+                                                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 1, 0),
+                                                    child: Text(
+                                                      listViewNuevaCitaRecord.curpNss,
+                                                      textAlign: TextAlign.start, // Alineación a la izquierda
+                                                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                        fontFamily: 'Lexend Deca',
+                                                        color: FlutterFlowTheme.of(context).darkBG,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+
                                               ],
                                             ),
                                           ),
@@ -585,7 +589,7 @@ class _EditarCitasPacientWidgetState extends State<EditarCitasPacientWidget> {
                 alignment: AlignmentDirectional(0, 1),
                 child: Container(
                   width: 396.7,
-                  height: 100,
+                  height: 60,//100//70.
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                   ),

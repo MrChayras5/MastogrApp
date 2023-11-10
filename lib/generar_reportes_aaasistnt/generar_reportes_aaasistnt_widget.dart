@@ -46,7 +46,7 @@ class _GenerarReportesAaasistntWidgetState
       onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        backgroundColor: FlutterFlowTheme.of(context).primaryBtnText,//backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         appBar: AppBar(
           backgroundColor: Color(0xFFEC7484),
           automaticallyImplyLeading: true,
@@ -54,7 +54,7 @@ class _GenerarReportesAaasistntWidgetState
             alignment: AlignmentDirectional(-0.85, -0.25),
             child: Text(
               FFLocalizations.of(context).getText(
-                'pclbcbbp' /* Reportes */,
+                'b1rtg22x' /* Reportes */,
               ),
               style: FlutterFlowTheme.of(context).bodyMedium.override(
                 fontFamily: 'Lexend Deca',
@@ -83,8 +83,8 @@ class _GenerarReportesAaasistntWidgetState
           child: Stack(
             children: [
               Container(
-                width: 386,
-                height: 688,
+                width: 375,//415
+                height: 710,
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).secondaryBackground,
                 ),
@@ -93,8 +93,7 @@ class _GenerarReportesAaasistntWidgetState
                     queryBuilder: (nuevaCitaRecord) => nuevaCitaRecord
                         .where('idAutorizar', isEqualTo: false)
                         .where('idPeticion', isEqualTo: true)
-                        .where('fecha',
-                        isGreaterThanOrEqualTo: getCurrentTimestamp),
+                        //.where('fecha', isGreaterThanOrEqualTo: getCurrentTimestamp),
                   ),
                   builder: (context, snapshot) {
                     // Customize what your widget looks like when it's loading.
@@ -122,10 +121,10 @@ class _GenerarReportesAaasistntWidgetState
                         listViewNuevaCitaRecordList[listViewIndex];
                         return Padding(
                           padding:
-                          EdgeInsetsDirectional.fromSTEB(20, 25, 20, 0),
+                          EdgeInsetsDirectional.fromSTEB(40, 25, 0, 0),
                           child: Container(
                             width: 349,
-                            height: 305,
+                            height: 330,
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.of(context).accent4,
                             ),
@@ -142,7 +141,7 @@ class _GenerarReportesAaasistntWidgetState
                                           Padding(
                                             padding:
                                             EdgeInsetsDirectional.fromSTEB(
-                                                40, 0, 0, 0),
+                                                20, 0, 0, 0),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
@@ -178,14 +177,15 @@ class _GenerarReportesAaasistntWidgetState
                                                     color:
                                                     FlutterFlowTheme.of(
                                                         context)
-                                                        .darkBG,
+                                                        .darkBG
+                                                        .withOpacity(0.3),
                                                   ),
                                                 ),
                                                 //cambio estudio cambio
                                                 Text(
                                                   FFLocalizations.of(context)
                                                       .getText(
-                                                    '7kzxo6zc' /* EstudioCambio: */,
+                                                    '7kzxo6zc' /* nuevo: */,
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                       context)
@@ -214,25 +214,27 @@ class _GenerarReportesAaasistntWidgetState
                                                     color:
                                                     FlutterFlowTheme.of(
                                                         context)
-                                                        .darkBG,
+                                                        .darkBG
+                                                        .withOpacity(0.3),
                                                   ),
                                                 ),
 
                                                 Text(
                                                   FFLocalizations.of(context)
                                                       .getText(
-                                                    '7kzxo6zcc' /* EstadoCambio: */,
+                                                    '7kzxo6zcc' /* nuevo: */,
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                       context)
                                                       .bodyMedium
                                                       .override(
-                                                    fontFamily:
-                                                    'Lexend Deca',
-                                                    color:
-                                                    FlutterFlowTheme.of(
-                                                        context)
-                                                        .darkBG,
+                                                      fontFamily:
+                                                      'Lexend Deca',
+                                                      color:
+                                                      FlutterFlowTheme.of(
+                                                          context)
+                                                          .darkBG
+
                                                   ),
                                                 ),
 
@@ -250,25 +252,27 @@ class _GenerarReportesAaasistntWidgetState
                                                     color:
                                                     FlutterFlowTheme.of(
                                                         context)
-                                                        .darkBG,
+                                                        .darkBG
+                                                        .withOpacity(0.3),
                                                   ),
                                                 ),
 
                                                 Text(
                                                   FFLocalizations.of(context)
                                                       .getText(
-                                                    'tm5x7iutt' /* LugarCambio: */,
+                                                    'tm5x7iutt' /* nuevo: */,
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                       context)
                                                       .bodyMedium
                                                       .override(
-                                                    fontFamily:
-                                                    'Lexend Deca',
-                                                    color:
-                                                    FlutterFlowTheme.of(
-                                                        context)
-                                                        .darkBG,
+                                                      fontFamily:
+                                                      'Lexend Deca',
+                                                      color:
+                                                      FlutterFlowTheme.of(
+                                                          context)
+                                                          .darkBG
+
                                                   ),
                                                 ),
 
@@ -286,14 +290,15 @@ class _GenerarReportesAaasistntWidgetState
                                                     color:
                                                     FlutterFlowTheme.of(
                                                         context)
-                                                        .darkBG,
+                                                        .darkBG
+                                                        .withOpacity(0.3),
                                                   ),
                                                 ),
 
                                                 Text(
                                                   FFLocalizations.of(context)
                                                       .getText(
-                                                    '7kzxo6zcz' /* FechaCambio: */,
+                                                    '7kzxo6zcz' /* nuevo: */,
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                       context)
@@ -322,14 +327,13 @@ class _GenerarReportesAaasistntWidgetState
                                                     color:
                                                     FlutterFlowTheme.of(
                                                         context)
-                                                        .darkBG,
+                                                        .darkBG.withOpacity(0.3),
                                                   ),
                                                 ),
-
                                                 Text(
                                                   FFLocalizations.of(context)
                                                       .getText(
-                                                    'mg0up9qxx' /* HoraCambio: */,
+                                                    'mg0up9qxasasx' /* HoraNueva: */,
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                       context)
@@ -340,10 +344,29 @@ class _GenerarReportesAaasistntWidgetState
                                                     color:
                                                     FlutterFlowTheme.of(
                                                         context)
-                                                        .darkBG
-                                                        .withOpacity(0.5),
+                                                        .darkBG,
                                                   ),
                                                 ),
+
+                                                Text(
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    'mg0up9qxx' /* Hora Anterior: */,
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                      context)
+                                                      .bodyMedium
+                                                      .override(
+                                                      fontFamily:
+                                                      'Lexend Deca',
+                                                      color:
+                                                      FlutterFlowTheme.of(
+                                                          context)
+                                                          .darkBG
+
+                                                  ),
+                                                ),
+
 
                                               ],
                                             ),
@@ -414,6 +437,8 @@ class _GenerarReportesAaasistntWidgetState
                                                     child: Text(
                                                       listViewNuevaCitaRecord
                                                           .segundEstudi,
+                                                      textAlign:
+                                                      TextAlign.start,
 
                                                       style:
                                                       FlutterFlowTheme.of(
@@ -556,7 +581,7 @@ class _GenerarReportesAaasistntWidgetState
                                                     dateTimeFormat(
                                                       'yMd',
                                                       listViewNuevaCitaRecord
-                                                          .fecha!,
+                                                          .segundFecha!,
                                                       locale:
                                                       FFLocalizations.of(
                                                           context)
@@ -575,32 +600,7 @@ class _GenerarReportesAaasistntWidgetState
                                                     ),
                                                   ),
                                                 ),
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(0, 0, 15, 0),
-                                                  child: Text(
-                                                    dateTimeFormat(
-                                                      'yMd',
-                                                      listViewNuevaCitaRecord
-                                                          .segundFecha,
-                                                      locale:
-                                                      FFLocalizations.of(
-                                                          context)
-                                                          .languageCode,
-                                                    ),
-                                                    textAlign: TextAlign.start,
-                                                    style: FlutterFlowTheme.of(
-                                                        context)
-                                                        .bodyMedium
-                                                        .override(
-                                                      fontFamily:
-                                                      'Lexend Deca',
-                                                      color: FlutterFlowTheme
-                                                          .of(context)
-                                                          .darkBG,
-                                                    ),
-                                                  ),
-                                                ),
+
                                                 Text(
                                                   dateTimeFormat(
                                                     'jm',
@@ -652,7 +652,7 @@ class _GenerarReportesAaasistntWidgetState
                                   ),
                                 ),
                                 Align(
-                                  alignment: AlignmentDirectional(-1.05, 0.92),
+                                  alignment: AlignmentDirectional(-1.05, 1),//-1.05,0.92
                                   child: Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0, 30, 0, 0),
@@ -660,21 +660,57 @@ class _GenerarReportesAaasistntWidgetState
                                       borderRadius: BorderRadius.circular(20),
                                       child: Image.asset(
                                         'assets/images/logo.png',
-                                        width: 146,
-                                        height: 114,
+                                        width: 136,
+                                        height: 104,
                                         fit: BoxFit.contain,
                                       ),
                                     ),
                                   ),
                                 ),
                                 Align(
-                                  alignment: AlignmentDirectional(0.83, 0.68),
+                                  alignment: AlignmentDirectional(0.6, 0.50),//0.7, 0.45
                                   child: FFButtonWidget(
-                                    onPressed: () {
-                                      print('BtnReport pressed ...');
+                                    onPressed: () async {
+                                      await listViewNuevaCitaRecord.reference
+                                          .update(createNuevaCitaRecordData(
+                                        idAutorizar: false,
+                                      ));
                                     },
                                     text: FFLocalizations.of(context).getText(
-                                      '5tvoxeqs' /* Generar Reporte */,
+                                      'zqvt7eik' /* Denegar */,
+                                    ),
+                                    options: FFButtonOptions(
+                                      height: 40,
+                                      padding: EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
+                                      iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                                      color: FlutterFlowTheme.of(context).primary,
+                                      textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                                        fontFamily: 'Lexend Deca',
+                                        color: Colors.white,
+                                      ),
+                                      elevation: 3,
+                                      borderSide: BorderSide(
+                                        color: Colors.transparent,
+                                        width: 1,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                  ),
+                                ),
+
+                                Align(
+
+                                  alignment: AlignmentDirectional(0.63, 0.89),
+                                  child: FFButtonWidget(
+                                    onPressed: () async {
+                                      await listViewNuevaCitaRecord.reference
+                                          .update(createNuevaCitaRecordData(
+                                        idAutorizar: true,
+                                        idEdit: false,
+                                      ));
+                                    },
+                                    text: FFLocalizations.of(context).getText(
+                                      '5tvoxeqs' /* Autorizar */,
                                     ),
                                     options: FFButtonOptions(
                                       height: 40,
@@ -778,7 +814,7 @@ class _GenerarReportesAaasistntWidgetState
                           fillColor: Colors.white,
                           hoverColor: Color(0xFFEC7484),
                           icon: Icon(
-                            Icons.calendar_today_outlined,
+                            Icons.edit_calendar_sharp,
                             color: FlutterFlowTheme.of(context).primaryText,
                             size: 25,
                           ),

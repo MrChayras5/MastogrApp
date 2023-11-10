@@ -18,9 +18,27 @@ class MiNuevaCitaModel extends FlutterFlowModel {
   ///  State fields for stateful widgets in this page.
 
   final formKey = GlobalKey<FormState>();
+
+
   // State field(s) for NombreTextField widget.
   TextEditingController? nombreTextFieldController;
   String? Function(BuildContext, String?)? nombreTextFieldControllerValidator;
+  String? _nombreTextFieldControllerValidator(
+      BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return FFLocalizations.of(context).getText(
+        'ingname' /* Ingrese su nombre */,
+      );
+    }
+
+    if (!RegExp(kTextValidatorUsernameRegex).hasMatch(val)) {
+      return FFLocalizations.of(context).getText(
+        'ingname' /* Ingrese su nombre */,
+      );
+    }
+    return null;
+  }
+
   // State field(s) for TelefonoTextField widget.
   TextEditingController? telefonoTextFieldController;
   String? Function(BuildContext, String?)? telefonoTextFieldControllerValidator;
@@ -74,6 +92,7 @@ class MiNuevaCitaModel extends FlutterFlowModel {
   // State field(s) for EstudioDropDown widget.
   String? estudioDropDownValue;
   FormFieldController<String>? estudioDropDownValueController;
+
   // State field(s) for EstadoDropDown widget.
   String? estadoDropDownValue;
   FormFieldController<String>? estadoDropDownValueController;
@@ -86,12 +105,15 @@ class MiNuevaCitaModel extends FlutterFlowModel {
   /// Initialization and disposal methods.
 
   void initState(BuildContext context) {
+    nombreTextFieldControllerValidator = _nombreTextFieldControllerValidator;
     telefonoTextFieldControllerValidator =
         _telefonoTextFieldControllerValidator;
     curpNssTextFieldControllerValidator = _curpNssTextFieldControllerValidator;
+
   }
 
   void dispose() {
+
     nombreTextFieldController?.dispose();
     telefonoTextFieldController?.dispose();
     curpNssTextFieldController?.dispose();

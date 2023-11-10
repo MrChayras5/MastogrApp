@@ -1,5 +1,6 @@
-import 'package:actividad_integradora/generar_reportes/generar_reportes_widget.dart';
-import 'package:actividad_integradora/generar_reportespacient/generar_reportespacient_widget.dart';
+import 'package:MastogrApp/generar_reportes/generar_reportes_widget.dart';
+import 'package:MastogrApp/generar_reportespacient/generar_reportespacient_widget.dart';
+import 'package:MastogrApp/mis_citass/mis_citass_widget.dart';
 
 import '../editar_citas_pacient/editar_citas_pacient_widget.dart';
 import '/auth/firebase_auth/auth_util.dart';
@@ -50,11 +51,13 @@ class _MenuPacienteWidgetState extends State<MenuPacienteWidget> {
       onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        backgroundColor: FlutterFlowTheme.of(context).primaryBtnText,
+
         drawer: Drawer(
           elevation: 16.0,
           child: Column(
             mainAxisSize: MainAxisSize.max,
+
             children: [
               Container(
                 width: 310.4,
@@ -72,6 +75,7 @@ class _MenuPacienteWidgetState extends State<MenuPacienteWidget> {
                         clipBehavior: Clip.antiAlias,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
+
                         ),
                         child: Image.asset(
                           'assets/images/logo.png',
@@ -100,6 +104,7 @@ class _MenuPacienteWidgetState extends State<MenuPacienteWidget> {
                 padding: EdgeInsets.zero,
                 shrinkWrap: true,
                 scrollDirection: Axis.vertical,
+
                 children: [
                   InkWell(
                     splashColor: Colors.transparent,
@@ -141,20 +146,20 @@ class _MenuPacienteWidgetState extends State<MenuPacienteWidget> {
                       dense: false,
                     ),
                   ),
+
                   ListTile(
                     leading: FaIcon(
-                      FontAwesomeIcons.filePdf,
+                      FontAwesomeIcons.fileSignature,
                       size: 30.0,
                     ),
                     title: Text(
                       FFLocalizations.of(context).getText(
                         'noupaocw' /* Editar citas */,
                       ),
-                      style:
-                          FlutterFlowTheme.of(context).headlineSmall.override(
-                                fontFamily: 'Lexend Deca',
-                                color: FlutterFlowTheme.of(context).primaryText,
-                              ),
+                      style: FlutterFlowTheme.of(context).headlineSmall.override(
+                        fontFamily: 'Lexend Deca',
+                        color: FlutterFlowTheme.of(context).primaryText,
+                      ),
                     ),
                     subtitle: Text(
                       FFLocalizations.of(context).getText(
@@ -164,6 +169,14 @@ class _MenuPacienteWidgetState extends State<MenuPacienteWidget> {
                     ),
                     tileColor: FlutterFlowTheme.of(context).secondaryBackground,
                     dense: false,
+                    onTap: () async {
+                      await Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => EditarCitasPacientWidget(), // Cambia EditarCitasWidget por el nombre de tu pantalla de edición de citas
+                        ),
+                      );
+                    },
                   ),
                   InkWell(
                     splashColor: Colors.transparent,
@@ -378,7 +391,7 @@ class _MenuPacienteWidgetState extends State<MenuPacienteWidget> {
                                 alignment: AlignmentDirectional(0.0, 1.0),
                                 child: Container(
                                   width: 396.7,
-                                  height: 100.0,
+                                  height: 70.0,//100
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
@@ -481,7 +494,7 @@ class _MenuPacienteWidgetState extends State<MenuPacienteWidget> {
                     children: [
                       Expanded(
                         child: Align(
-                          alignment: AlignmentDirectional(0.6, -0.45),
+                          alignment: AlignmentDirectional(0.6, -0.48),
                           child: FlutterFlowIconButton(
                             borderColor: Colors.transparent,
                             borderRadius: 30.0,

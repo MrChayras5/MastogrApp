@@ -26,6 +26,7 @@ class FlutterFlowDropDown<T> extends StatefulWidget {
     this.hidesUnderline = false,
     this.disabled = false,
     this.isSearchable = false,
+    isMultiSelect: false,
   });
 
   final FormFieldController<T> controller;

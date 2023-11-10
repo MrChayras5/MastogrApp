@@ -47,7 +47,8 @@ class _EditarCitasWidgetState extends State<EditarCitasWidget> {
       onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        //ccambiar el color del fondo de la pantalla
+        backgroundColor: FlutterFlowTheme.of(context).primaryBtnText,//backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         appBar: AppBar(
           backgroundColor: Color(0xFFEC7484),
           automaticallyImplyLeading: true,
@@ -65,7 +66,7 @@ class _EditarCitasWidgetState extends State<EditarCitasWidget> {
           ),
           actions: [
             Container(
-              width: 146.0,
+              width: 146.0,//146
               height: 100.0,
               decoration: BoxDecoration(
                 color: Color(0xFFEC7484),
@@ -131,7 +132,7 @@ class _EditarCitasWidgetState extends State<EditarCitasWidget> {
                                 children: [
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        20.0, 0.0, 0.0, 0.0),
+                                        10.0, 0.0, 0.0, 0.0),
                                     child: Container(
                                       width: 202.0,
                                       height: 207.0,
@@ -203,8 +204,8 @@ class _EditarCitasWidgetState extends State<EditarCitasWidget> {
                                           ClipRRect(
                                             borderRadius:
                                                 BorderRadius.circular(20.0),
-                                            child: Image.network(
-                                              'https://i.pinimg.com/736x/72/a4/66/72a46689c9bc36aa04a67a90981baf71.jpg',
+                                            child: Image.asset(
+                                              'assets/images/logo.png',
                                               width: 146.0,
                                               height: 114.0,
                                               fit: BoxFit.contain,
@@ -216,7 +217,7 @@ class _EditarCitasWidgetState extends State<EditarCitasWidget> {
                                   ),
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        35.0, 60.0, 0.0, 0.0),
+                                        10.0, 60.0, 0.0, 0.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
@@ -270,6 +271,7 @@ class _EditarCitasWidgetState extends State<EditarCitasWidget> {
                                               ),
                                               options: FFButtonOptions(
                                                 height: 40.0,
+                                                //width: 110.0,
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         24.0, 0.0, 24.0, 0.0),
@@ -321,7 +323,7 @@ class _EditarCitasWidgetState extends State<EditarCitasWidget> {
                                               'gqs9si9e' /* Editar */,
                                             ),
                                             options: FFButtonOptions(
-                                              width: 110.0,
+                                              width: 110.0,//110
                                               height: 40.0,
                                               padding: EdgeInsetsDirectional
                                                   .fromSTEB(
@@ -434,7 +436,7 @@ class _EditarCitasWidgetState extends State<EditarCitasWidget> {
                           fillColor: Colors.white,
                           hoverColor: Color(0xFFEC7484),
                           icon: Icon(
-                            Icons.calendar_today_outlined,
+                            Icons.edit_calendar_sharp,
                             color: FlutterFlowTheme.of(context).primaryText,
                             size: 25.0,
                           ),

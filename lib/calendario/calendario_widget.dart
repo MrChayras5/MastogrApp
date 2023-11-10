@@ -109,6 +109,9 @@ class _CalendarioWidgetState extends State<CalendarioWidget> {
                   selectedDateStyle: TextStyle(),
                   inactiveDateStyle: TextStyle(),
                   locale: FFLocalizations.of(context).languageCode,
+                  width: 170, // Establece el ancho deseado
+                    height:100,
+
                 ),
               ),
               Text(
@@ -135,7 +138,7 @@ class _CalendarioWidgetState extends State<CalendarioWidget> {
                     ),
                     Padding(
                       padding:
-                      EdgeInsetsDirectional.fromSTEB(70.0, 0.0, 0.0, 0.0),
+                      EdgeInsetsDirectional.fromSTEB(40.0, 0.0, 0.0, 0.0),
                       child: Text(
                         FFLocalizations.of(context).getText(
                           'dccjz03s' /* Citas del dia seleccionado */,
@@ -153,9 +156,9 @@ class _CalendarioWidgetState extends State<CalendarioWidget> {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(7.0, 0.0, 0.0, 0.0),
+                    padding: EdgeInsetsDirectional.fromSTEB(7.0, 0.0, 10.0, 0.0),
                     child: Container(
-                      width: 183.0,
+                      width: 153.0,//183
                       height: 230.0,
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -164,6 +167,7 @@ class _CalendarioWidgetState extends State<CalendarioWidget> {
                         stream: queryNuevaCitaRecord(
                           queryBuilder: (nuevaCitaRecord) => nuevaCitaRecord
                               .where('idAutorizar', isEqualTo: true)
+
                               .where('userID', isEqualTo: currentUserReference),
                         ),
                         builder: (context, snapshot) {
@@ -172,7 +176,7 @@ class _CalendarioWidgetState extends State<CalendarioWidget> {
                             return Center(
                               child: SizedBox(
                                 width: 50.0,
-                                height: 50.0,
+                                height: 40.0,
                                 child: CircularProgressIndicator(
                                   color: FlutterFlowTheme.of(context).primary,
                                 ),
@@ -203,7 +207,7 @@ class _CalendarioWidgetState extends State<CalendarioWidget> {
                                       .titleLarge
                                       .override(
                                     fontFamily: 'Poppins',
-                                    fontSize: 20.0,
+                                    fontSize: 15.0,
                                     fontWeight: FontWeight.normal,
                                   ),
                                 ),
@@ -211,7 +215,7 @@ class _CalendarioWidgetState extends State<CalendarioWidget> {
                                   Icons.arrow_forward_ios,
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryText,
-                                  size: 20.0,
+                                  size: 15.0,
                                 ),
                                 tileColor: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
@@ -224,7 +228,7 @@ class _CalendarioWidgetState extends State<CalendarioWidget> {
                     ),
                   ),
                   Container(
-                    width: 196.0,
+                    width: 176.0,//196
                     height: 229.0,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -273,7 +277,7 @@ class _CalendarioWidgetState extends State<CalendarioWidget> {
                                       .titleLarge
                                       .override(
                                     fontFamily: 'Poppins',
-                                    fontSize: 20.0,
+                                    fontSize: 15.0,
                                     fontWeight: FontWeight.normal,
                                   ),
                                 ),
@@ -294,7 +298,7 @@ class _CalendarioWidgetState extends State<CalendarioWidget> {
                                   Icons.arrow_forward_ios,
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryText,
-                                  size: 20.0,
+                                  size: 15.0,
                                 ),
                                 tileColor: FlutterFlowTheme.of(context)
                                     .secondaryBackground,

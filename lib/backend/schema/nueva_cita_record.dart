@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ffi';
 
 import '/backend/schema/util/firestore_util.dart';
 import '/backend/schema/util/schema_util.dart';
@@ -13,6 +14,15 @@ class NuevaCitaRecord extends FirestoreRecord {
   ) : super(reference, data) {
     _initializeFields();
   }
+  //nombre a la cita
+  String? _nomCita;
+  String get nombCita => _nomCita ?? '';
+  bool hasNomCita()=> _nomCita != null;
+
+  //numero de cita
+  int? _numCita;
+  int get numCita => _numCita ?? 0;
+  bool hasNumCita()=> _numCita != null;
 
   // "nombre" field.
   String? _nombre;
@@ -114,6 +124,8 @@ class NuevaCitaRecord extends FirestoreRecord {
   bool hasSegundHora() => _segundHora != null;
 
   void _initializeFields() {
+    _nomCita = snapshotData['nomCita'] as String?;
+    _numCita = castToType<int>(snapshotData['numCita']);
     _nombre = snapshotData['nombre'] as String?;
     _telefono = castToType<double>(snapshotData['telefono']);
     _curpNss = snapshotData['curpNss'] as String?;
@@ -169,6 +181,8 @@ class NuevaCitaRecord extends FirestoreRecord {
 }
 
 Map<String, dynamic> createNuevaCitaRecordData({
+  String? nomCita,
+  int? numCita,
   String? nombre,
   double? telefono,
   String? curpNss,
@@ -197,6 +211,8 @@ Map<String, dynamic> createNuevaCitaRecordData({
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
+      'nomCita': nomCita,
+      'numCita': numCita,
       'nombre': nombre,
       'telefono': telefono,
       'curpNss': curpNss,
@@ -211,6 +227,10 @@ Map<String, dynamic> createNuevaCitaRecordData({
       'idEdit': idEdit,
       'idPeticion': idPeticion,
       'hora': hora,
+      'segundHora': segundHora,
+      'segundFecha':segundFecha,
+      'segundEstudi':segundEstudi,
+      'segundEstado':segundEstado,
 
       'segundLugar': segundLugar,
     }.withoutNulls,

@@ -1,3 +1,7 @@
+import 'dart:math';
+
+import 'package:flutter/services.dart';
+
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
@@ -15,6 +19,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'mi_nueva_cita_model.dart';
 export 'mi_nueva_cita_model.dart';
+import 'package:uuid/uuid.dart';
 
 class MiNuevaCitaWidget extends StatefulWidget {
   const MiNuevaCitaWidget({Key? key}) : super(key: key);
@@ -49,6 +54,9 @@ class _MiNuevaCitaWidgetState extends State<MiNuevaCitaWidget> {
 
   @override
   Widget build(BuildContext context) {
+    //SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);//linea para desaparecer el menu del celular
+    // Desactiva el enfoque en todos los campos de texto al principio
+    FocusManager.instance.primaryFocus?.unfocus();
     return StreamBuilder<List<NuevaCitaRecord>>(
       stream: queryNuevaCitaRecord(
         singleRecord: true,
@@ -71,9 +79,12 @@ class _MiNuevaCitaWidgetState extends State<MiNuevaCitaWidget> {
         }
         List<NuevaCitaRecord> miNuevaCitaNuevaCitaRecordList = snapshot.data!;
         // Return an empty Container when the item does not exist.
+        /*
         if (snapshot.data!.isEmpty) {
           return Container();
         }
+
+         */
         final miNuevaCitaNuevaCitaRecord =
         miNuevaCitaNuevaCitaRecordList.isNotEmpty
             ? miNuevaCitaNuevaCitaRecordList.first
@@ -81,6 +92,9 @@ class _MiNuevaCitaWidgetState extends State<MiNuevaCitaWidget> {
         return GestureDetector(
           onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
           child: Scaffold(
+            //evitar que el menu se eleve con el teclado
+            resizeToAvoidBottomInset: false, // Evita que el contenido se eleve con el teclado
+            //
             key: scaffoldKey,
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
             appBar: AppBar(
@@ -116,6 +130,7 @@ class _MiNuevaCitaWidgetState extends State<MiNuevaCitaWidget> {
             ),
             body: SafeArea(
               top: true,
+
               child: Stack(
                 children: [
                   Align(
@@ -134,10 +149,10 @@ class _MiNuevaCitaWidgetState extends State<MiNuevaCitaWidget> {
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Align(
-                                  alignment: AlignmentDirectional(-0.77, -0.93),
+                                  alignment: AlignmentDirectional(-0.87, -0.93),//-0.87,
                                   child: Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 10.0, 0.0),
+                                        0.0, 0.0, 1.0, 0.0),
                                     child: Text(
                                       FFLocalizations.of(context).getText(
                                         'v1qpqw7o' /* Ingrese los siguiente datos: */,
@@ -235,7 +250,7 @@ class _MiNuevaCitaWidgetState extends State<MiNuevaCitaWidget> {
                                 TextFormField(
                                   controller:
                                   _model.telefonoTextFieldController,
-                                  autofocus: true,
+                                  autofocus: false,
                                   obscureText: false,
                                   decoration: InputDecoration(
                                     hintText:
@@ -297,7 +312,7 @@ class _MiNuevaCitaWidgetState extends State<MiNuevaCitaWidget> {
                                 ),
                                 TextFormField(
                                   controller: _model.curpNssTextFieldController,
-                                  autofocus: true,
+                                  autofocus: false,
                                   obscureText: false,
                                   decoration: InputDecoration(
                                     hintText:
@@ -391,6 +406,7 @@ class _MiNuevaCitaWidgetState extends State<MiNuevaCitaWidget> {
                                       .toList(),
                                   onChanged: (val) => setState(
                                           () => _model.estudioDropDownValue = val),
+
                                   width: 180.0,
                                   height: 50.0,
                                   searchHintTextStyle:
@@ -414,12 +430,15 @@ class _MiNuevaCitaWidgetState extends State<MiNuevaCitaWidget> {
                                       12.0, 4.0, 12.0, 4.0),
                                   hidesUnderline: true,
                                   isSearchable: false,
+
+
                                 );
+
                               },
                             ),
+
                           ),
-                          if (_model.estudioDropDownValue != null &&
-                              _model.estudioDropDownValue != '')
+
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 10.0),
@@ -600,13 +619,13 @@ class _MiNuevaCitaWidgetState extends State<MiNuevaCitaWidget> {
                                       40.0, 0.0, 0.0, 0.0),
                                   child: FFButtonWidget(
                                     onPressed: () async {
-                                      final _datePicked2Time =
-                                      await showTimePicker(
+                                      final _datePicked2Time = await showTimePicker(
                                         context: context,
                                         initialTime: TimeOfDay.fromDateTime(
                                             getCurrentTimestamp),
                                       );
                                       if (_datePicked2Time != null) {
+                                          if (_datePicked2Time.hour >= 7 && _datePicked2Time.hour <= 17) {
                                         setState(() {
                                           _model.datePicked2 = DateTime(
                                             getCurrentTimestamp.year,
@@ -616,6 +635,26 @@ class _MiNuevaCitaWidgetState extends State<MiNuevaCitaWidget> {
                                             _datePicked2Time.minute,
                                           );
                                         });
+                                          } else {
+                                            // Mostrar un mensaje de error al usuario si la hora está fuera del rango.
+                                            showDialog(
+                                              context: context,
+                                              builder: (context) {
+                                                return AlertDialog(
+                                                  title: Text('Error'),
+                                                  content: Text('Por favor, seleccione una hora entre las 7 am y las 6 pm.'),
+                                                  actions: <Widget>[
+                                                    TextButton(
+                                                      onPressed: () {
+                                                        Navigator.of(context).pop();
+                                                      },
+                                                      child: Text('Cerrar'),
+                                                    ),
+                                                  ],
+                                                );
+                                              },
+                                            );
+                                          }
                                       }
                                     },
                                     text: FFLocalizations.of(context).getText(
@@ -660,6 +699,97 @@ class _MiNuevaCitaWidgetState extends State<MiNuevaCitaWidget> {
                                     !_model.formKey.currentState!.validate()) {
                                   return;
                                 }
+                                if (_model.estudioDropDownValue == null) {
+                                  await showDialog(
+                                    context: context,
+                                    builder: (alertDialogContext) {
+                                      return AlertDialog(
+                                        title: Text('Seleccione un estudio'),
+                                        content: Text('Para continuar debera seleccionar un estudio.'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(alertDialogContext),
+                                            child: Text('Ok'),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                  return;
+                                }
+                                if (_model.estadoDropDownValue == null) {
+                                  await showDialog(
+                                    context: context,
+                                    builder: (alertDialogContext) {
+                                      return AlertDialog(
+                                        title: Text('Seleccione su estado'),
+                                        content: Text('Para continuar debera seleccionar su estado.'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(alertDialogContext),
+                                            child: Text('Ok'),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                  return;
+                                }
+                                if (_model.lugarDropDownValue == null) {
+                                  await showDialog(
+                                    context: context,
+                                    builder: (alertDialogContext) {
+                                      return AlertDialog(
+                                        title: Text('Seleccione un lugar'),
+                                        content: Text('Para continuar debera seleccionar el lugar a realizar su cita.'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(alertDialogContext),
+                                            child: Text('Ok'),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                  return;
+                                }
+                                if (_model.datePicked1 == null) {
+                                  await showDialog(
+                                    context: context,
+                                    builder: (alertDialogContext) {
+                                      return AlertDialog(
+                                        title: Text('Seleccione la fecha'),
+                                        content: Text('Para continuar debera seleccionar la fecha de su cita.'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(alertDialogContext),
+                                            child: Text('Ok'),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                  return;
+                                }
+                                if (_model.datePicked2 == null) {
+                                  await showDialog(
+                                    context: context,
+                                    builder: (alertDialogContext) {
+                                      return AlertDialog(
+                                        title: Text('Seleccione la hora'),
+                                        content: Text('Para continuar debera seleccionar la hora de su cita.'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(alertDialogContext),
+                                            child: Text('Ok'),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                  return;
+                                }
+
                                 var confirmDialogResponse = await showDialog<
                                     bool>(
                                   context: context,
@@ -667,61 +797,73 @@ class _MiNuevaCitaWidgetState extends State<MiNuevaCitaWidget> {
                                     return AlertDialog(
                                       title: Text('Confirmar datos'),
                                       content: Text(
-                                          '${'Elección de estudio: ${_model.estudioDropDownValue} '}${'Fecha:${dateTimeFormat(
+                                          '${'Elección de estudio: ${_model.estudioDropDownValue} '
+                                              '\n'}'
+                                              '${'Fecha:${dateTimeFormat(
                                             'yMd',
                                             _model.datePicked1,
                                             locale: FFLocalizations.of(context)
                                                 .languageCode,
-                                          )} Hora:${dateTimeFormat(
+                                          )}\nHora:${dateTimeFormat(
                                             'jm',
                                             _model.datePicked2,
                                             locale: FFLocalizations.of(context)
                                                 .languageCode,
-                                          )}'}${'Lugar: ${_model.lugarDropDownValue}'}'),
+                                          )}'}${'\nLugar: ${_model.lugarDropDownValue}'}'),
+
+
                                       actions: [
                                         TextButton(
                                           onPressed: () => Navigator.pop(
                                               alertDialogContext, false),
                                           child: Text('Cancelar'),
                                         ),
-                                        TextButton(
-                                          onPressed: () => Navigator.pop(
-                                              alertDialogContext, true),
-                                          child: Text('Confirmar'),
-                                        ),
-                                      ],
+
+                                    TextButton(
+                                    onPressed: () async {
+                                      int generarNumeroAleatorio() {
+                                        final random = Random();
+                                        int numero;
+                                        do {
+                                          numero = random.nextInt(10000); // Genera un número entre 0 y 9999
+                                        } while (numero < 1000); // Asegura que tenga 4 dígitos
+                                        return numero;
+                                      }
+
+                                      // Guardar el registro de cita y navegar a la siguiente pantalla
+                                    int numCita = generarNumeroAleatorio();
+                                    final nuevaCitaCreateData = createNuevaCitaRecordData(
+                                    numCita: numCita,
+                                    nombre: _model.nombreTextFieldController.text,
+                                    telefono: double.tryParse(_model.telefonoTextFieldController.text),
+                                    curpNss: _model.curpNssTextFieldController.text,
+                                    estudio: _model.estudioDropDownValue,
+                                    estado: _model.estadoDropDownValue,
+                                    lugar: _model.lugarDropDownValue,
+                                    fecha: _model.datePicked1,
+                                    userID: currentUserReference,
+                                    motivoCambio: 'MotivoDeCambio',
+                                    idAutorizar: false,
+                                    isAsistent: false,
+                                    idEdit: false,
+                                    idPeticion: false,
+                                    hora: _model.datePicked2,
+                                    );
+                                    await NuevaCitaRecord.collection.doc().set(nuevaCitaCreateData);
+
+                                    // Navegar a la siguiente pantalla
+                                    Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                    builder: (context) => MiNuevaCitaWidget(),
+                                    ),
+                                    );
+                                    },
+                                    child: Text('Confirmar'),
+                                    ),
+                                    ],
                                     );
                                   },
-                                ) ??
-                                    false;
-
-                                final nuevaCitaCreateData =
-                                createNuevaCitaRecordData(
-                                  nombre: _model.nombreTextFieldController.text,
-                                  telefono: double.tryParse(
-                                      _model.telefonoTextFieldController.text),
-                                  curpNss:
-                                  _model.curpNssTextFieldController.text,
-                                  estudio: _model.estudioDropDownValue,
-                                  estado: _model.estadoDropDownValue,
-                                  lugar: _model.lugarDropDownValue,
-                                  fecha: _model.datePicked1,
-                                  userID: currentUserReference,
-                                  motivoCambio: 'MotivoDeCambio',
-                                  idAutorizar: false,
-                                  isAsistent: false,
-                                  idEdit: false,
-                                  idPeticion: false,
-                                  hora: _model.datePicked2,
-                                );
-                                await NuevaCitaRecord.collection
-                                    .doc()
-                                    .set(nuevaCitaCreateData);
-                                await Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => MiNuevaCitaWidget(),
-                                  ),
                                 );
                               },
                               text: FFLocalizations.of(context).getText(
@@ -757,7 +899,7 @@ class _MiNuevaCitaWidgetState extends State<MiNuevaCitaWidget> {
                     alignment: AlignmentDirectional(0.0, 1.0),
                     child: Container(
                       width: 396.7,
-                      height: 100.0,
+                      height: 70.0,
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).secondaryBackground,
                       ),

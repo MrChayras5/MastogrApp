@@ -82,8 +82,8 @@ class _SolicitudCitasWidgetState extends State<SolicitudCitasWidget> {
           child: Stack(
             children: [
               Container(
-                width: 390.0,
-                height: 555.0,
+                width: 412.0,
+                height: 710.0,
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).secondaryBackground,
                 ),
@@ -127,10 +127,10 @@ class _SolicitudCitasWidgetState extends State<SolicitudCitasWidget> {
                             children: [
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    20.0, 20.0, 20.0, 0.0),
+                                    50.0, 20.0, 40.0, 0.0),
                                 child: Container(
-                                  width: 350.0,
-                                  height: 250.0,
+                                  width: 292.0,//350
+                                  height: 250.0,//250
                                   decoration: BoxDecoration(
                                     color: Color(0xFFD3CFCF),
                                   ),
@@ -142,8 +142,13 @@ class _SolicitudCitasWidgetState extends State<SolicitudCitasWidget> {
                                         children: [
                                           Text(
                                             valueOrDefault<String>(
-                                              listViewNuevaCitaRecord.fecha
-                                                  ?.toString(),
+                                              dateTimeFormat(
+                                                'd/M/y',
+                                                listViewNuevaCitaRecord.fecha,
+                                                locale:
+                                                FFLocalizations.of(context)
+                                                    .languageCode,
+                                              ),
                                               'AquiFecha',
                                             ),
                                             style: FlutterFlowTheme.of(context)
@@ -388,7 +393,7 @@ class _SolicitudCitasWidgetState extends State<SolicitudCitasWidget> {
                                   fillColor: Colors.white,
                                   hoverColor: Color(0xFFEC7484),
                                   icon: Icon(
-                                    Icons.calendar_today_outlined,
+                                    Icons.edit_calendar_sharp,
                                     color: FlutterFlowTheme.of(context)
                                         .primaryText,
                                     size: 25.0,

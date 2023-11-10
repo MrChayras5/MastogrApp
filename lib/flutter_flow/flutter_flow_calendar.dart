@@ -27,7 +27,7 @@ class FlutterFlowCalendar extends StatefulWidget {
     this.selectedDateStyle,
     this.titleStyle,
     this.rowHeight,
-    this.locale,
+    this.locale, required int width, required int height,
   }) : super(key: key);
 
   final bool weekFormat;
@@ -211,7 +211,7 @@ class CalendarHeader extends StatelessWidget {
   Widget build(BuildContext context) => Container(
         decoration: const BoxDecoration(),
         margin: const EdgeInsets.all(0),
-        padding: const EdgeInsets.symmetric(vertical: 8),
+        padding: const EdgeInsets.symmetric(vertical: 4),
         child: Row(
           mainAxisSize: MainAxisSize.max,
           children: <Widget>[
@@ -246,7 +246,7 @@ class CustomIconButton extends StatelessWidget {
     Key? key,
     required this.icon,
     required this.onTap,
-    this.margin = const EdgeInsets.symmetric(horizontal: 4),
+    this.margin = const EdgeInsets.symmetric(horizontal: 3),
     this.padding = const EdgeInsets.all(10),
   }) : super(key: key);
 

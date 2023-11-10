@@ -11,18 +11,42 @@ import 'package:provider/provider.dart';
 class Password1Model extends FlutterFlowModel {
   ///  State fields for stateful widgets in this page.
 
+  final unfocusNode = FocusNode();
+  final formKey = GlobalKey<FormState>();
   // State field(s) for EmailTextField widget.
   TextEditingController? emailTextFieldController;
   String? Function(BuildContext, String?)? emailTextFieldControllerValidator;
+  String? _emailTextFieldControllerValidator(
+      BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return FFLocalizations.of(context).getText(
+        'n5ghu8wp' /* Ingrese su correo */,
+      );
+    }
+
+    if (!RegExp(kTextValidatorEmailRegex).hasMatch(val)) {
+      return FFLocalizations.of(context).getText(
+        '7du2kdkh' /* Correo invalido */,
+      );
+    }
+
+
+
+    return null;
+  }
 
   /// Initialization and disposal methods.
 
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    emailTextFieldControllerValidator = _emailTextFieldControllerValidator;
+  }
 
   void dispose() {
+    unfocusNode.dispose();
     emailTextFieldController?.dispose();
   }
 
-  /// Additional helper methods are added here.
+/// Action blocks are added here.
 
+/// Additional helper methods are added here.
 }

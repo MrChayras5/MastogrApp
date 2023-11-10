@@ -9,9 +9,15 @@ import '/registrate/registrate_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import '/auth/firebase_auth/auth_util.dart'; // Asegúrate de que esta sea la ruta correcta al archivo con signInWithEmailAndPassword.
+
+//
 
 class IniciarSesionModel extends FlutterFlowModel {
   ///  State fields for stateful widgets in this page.
+
+
+
 
   final formKey = GlobalKey<FormState>();
   // State field(s) for EmailTextField widget.
@@ -30,6 +36,7 @@ class IniciarSesionModel extends FlutterFlowModel {
         'nrad91n6' /* Correo incorrecto */,
       );
     }
+
     return null;
   }
 

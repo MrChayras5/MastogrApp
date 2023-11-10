@@ -45,7 +45,7 @@ class _BienvenidaWidgetState extends State<BienvenidaWidget> {
           top: true,
           child: Container(
             width: MediaQuery.of(context).size.width * 1.0,
-            height: MediaQuery.of(context).size.height * 0.765,
+            height: MediaQuery.of(context).size.height * 0.965,//0.765
             decoration: BoxDecoration(
               color: Color(0xFFECA090),
               image: DecorationImage(
@@ -104,7 +104,7 @@ class _BienvenidaWidgetState extends State<BienvenidaWidget> {
                     },
                     child: Text(
                       FFLocalizations.of(context).getText(
-                        'lx7y2m14' /* MastogrApp */,
+                        'lx7y2m144' /* MastogrApp */,
                       ),
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Lexend Deca',

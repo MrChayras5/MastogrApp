@@ -1,4 +1,4 @@
-import 'package:actividad_integradora/generar_reportes_aaasistnt/generar_reportes_aaasistnt_widget.dart';
+import 'package:MastogrApp/generar_reportes_aaasistnt/generar_reportes_aaasistnt_widget.dart';
 
 import '/auth/firebase_auth/auth_util.dart';
 import '/bienvenida/bienvenida_widget.dart';
@@ -48,7 +48,7 @@ class _MenuAsistenteWidgetState extends State<MenuAsistenteWidget> {
       onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        backgroundColor: FlutterFlowTheme.of(context).primaryBtnText,
         drawer: Drawer(
           elevation: 16.0,
           child: Stack(
@@ -164,7 +164,7 @@ class _MenuAsistenteWidgetState extends State<MenuAsistenteWidget> {
                         },
                         child: ListTile(
                           leading: FaIcon(
-                            FontAwesomeIcons.calendar,
+                            Icons.edit_calendar_sharp,
                             size: 30.0,
                           ),
                           title: Text(
@@ -189,14 +189,28 @@ class _MenuAsistenteWidgetState extends State<MenuAsistenteWidget> {
                           dense: false,
                         ),
                       ),
-                      ListTile(
+                      InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          await Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => GenerarReportesAaasistntWidget(),
+                            ),
+                          );
+                        },
+                      child:ListTile(
                         leading: FaIcon(
-                          FontAwesomeIcons.fileSignature,
+
+                        Icons.fact_check_sharp,
                           size: 30.0,
                         ),
                         title: Text(
                           FFLocalizations.of(context).getText(
-                            'hulhqtw9' /* Reportes */,
+                            'hulhqtw9' /* Peticiones */,
                           ),
                           style: FlutterFlowTheme.of(context)
                               .headlineSmall
@@ -214,6 +228,7 @@ class _MenuAsistenteWidgetState extends State<MenuAsistenteWidget> {
                         tileColor:
                             FlutterFlowTheme.of(context).secondaryBackground,
                         dense: false,
+                      ),
                       ),
                     ],
                   ),
@@ -338,7 +353,7 @@ class _MenuAsistenteWidgetState extends State<MenuAsistenteWidget> {
                               buttonSize: 105.0,
                               fillColor: Color(0xFFEC7484),
                               icon: FaIcon(
-                                FontAwesomeIcons.filePdf,
+                                Icons.fact_check_sharp,
                                 color: Colors.white,
                                 size: 60.0,
                               ),
@@ -478,8 +493,7 @@ class _MenuAsistenteWidgetState extends State<MenuAsistenteWidget> {
                                                   fillColor: Colors.white,
                                                   hoverColor: Color(0xFFEC7484),
                                                   icon: Icon(
-                                                    Icons
-                                                        .calendar_today_outlined,
+                                                   Icons.edit_calendar_sharp,
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .primaryText,
@@ -524,7 +538,7 @@ class _MenuAsistenteWidgetState extends State<MenuAsistenteWidget> {
                                 buttonSize: 105.0,
                                 fillColor: Color(0xFFEC7484),
                                 icon: Icon(
-                                  Icons.event,
+                                  Icons.edit_calendar_sharp,
                                   color: Colors.white,
                                   size: 60.0,
                                 ),
